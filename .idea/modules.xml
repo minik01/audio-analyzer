@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AudioAnalyzer/AudioAnalyzer.iml" filepath="$PROJECT_DIR$/AudioAnalyzer/AudioAnalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cryptography/Cryptography.iml" filepath="$PROJECT_DIR$/Cryptography/Cryptography.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MetadataManager/MetadataManager.iml" filepath="$PROJECT_DIR$/MetadataManager/MetadataManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/audio-analyzer.iml" filepath="$PROJECT_DIR$/audio-analyzer.iml" />
+    </modules>
+  </component>
+</project>
