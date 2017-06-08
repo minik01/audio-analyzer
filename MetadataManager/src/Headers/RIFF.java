@@ -31,7 +31,7 @@ public class RIFF {
 
     public int getChunkSize(byte[] bytes)
     {
-        return Utils.readInt(false,4,4,bytes);
+        return Utils.readUInt(false,4,4,bytes);
     }
 
     public void setChunkSize(int newChunkSize ,byte[] bytes)

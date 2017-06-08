@@ -12,7 +12,7 @@ public class Unknown {
     }
 
     public int getSubchunkSize(byte[] bytes)   {
-        return Utils.readInt(false, offset+4, 4, bytes);
+        return Utils.readUInt(false, offset+4, 4, bytes);
     }
 
     public Unknown(int offset) {

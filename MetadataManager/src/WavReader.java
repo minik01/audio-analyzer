@@ -28,6 +28,17 @@ public class WavReader {
         return isPowOf2(n / 2);
     }
 
+    public double[] getNormalizedData(int channal, int start, int end) {
+        if (!isPowOf2(end - start)) {
+            System.out.println("Warning! (end-start) is not a power of 2");
+        }
+        double ans[] = new double[end - start];
+        for (int i = 0; i < end - start; i++)
+            ans[i] = riff.dataSubchunk.get(0).getChannal(channal)[i + start] / Math.pow(2.0, (double) riff.fmt.getBitsPerSample(bytes)) - 1;
+
+        return ans;
+    }
+
     public int getBitsPerSample() {
         return riff.fmt.getBitsPerSample(bytes);
     }

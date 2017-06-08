@@ -22,5 +22,6 @@ public class AudioAnalyzer {
 
         WavReader wavReader = new WavReader(bytes);
         wavReader.showFileProperties();
+
     }
 }

@@ -1,17 +1,31 @@
 package Headers;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Utils {
     public static int unsignedToBytes(byte b) {
         return b & 0xFF;
     }
-    public static int readInt(boolean bigEndian, int offset, int size, byte[] bytes)  {
+    public static int readUInt(boolean bigEndian, int offset, int size, byte[] bytes)  {
         int ans = 0;
         if(!bigEndian)
             for (int i = 1; i <= size; i++) {
                 ans = ans * 256;
                 ans = ans + Utils.unsignedToBytes(bytes[offset + size - i]);
+            }
+        else {
+            System.out.println("NOT IMPLEMENTED");
+            ans = -1;
+        }
+        return ans;
+    }
+    public static int readInt(boolean bigEndian, int offset, int size, byte[] bytes)  {
+        int ans = 0;
+
+        if(!bigEndian)
+            for (int i = 1; i <= size; i++) {
+                ans = ans * 256;
+                ans = ans + (bytes[offset + size - i]);
+                System.out.println(bytes[offset + size - i]);
+
             }
         else {
             System.out.println("NOT IMPLEMENTED");

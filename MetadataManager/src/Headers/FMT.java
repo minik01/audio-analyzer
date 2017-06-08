@@ -17,37 +17,37 @@ public class FMT {
     }
 
     public int getSubchunkSize(byte[] bytes)  {
-        return Utils.readInt(false, offset+4, 4, bytes);
+        return Utils.readUInt(false, offset+4, 4, bytes);
     }
 
     public int getAudioFormat(byte[] bytes) {
-        return Utils.readInt(false, offset+8, 2, bytes);
+        return Utils.readUInt(false, offset+8, 2, bytes);
 
     }
 
     public int getNumChannels(byte[] bytes) {
-        return Utils.readInt(false, offset+10, 2, bytes);
+        return Utils.readUInt(false, offset+10, 2, bytes);
 
     }
 
     public long getSampleRate(byte[] bytes) {
-        return Utils.readInt(false, offset+12, 4, bytes);
+        return Utils.readUInt(false, offset+12, 4, bytes);
 
     }
 
     public int getByteRate(byte[] bytes) {
-        return Utils.readInt(false, offset+16, 4, bytes);
+        return Utils.readUInt(false, offset+16, 4, bytes);
 
     }
 
 
     public int getBlockAlign(byte[] bytes) {
-        return Utils.readInt(false, offset+20, 2, bytes);
+        return Utils.readUInt(false, offset+20, 2, bytes);
 
     }
 
     public int getBitsPerSample(byte[] bytes) {
-        return Utils.readInt(false, offset+22, 2, bytes);
+        return Utils.readUInt(false, offset+22, 2, bytes);
 
     }
 

@@ -23,7 +23,7 @@ public class DataSubchunk {
     }
 
     public int getSubchunkSize(byte[] bytes) {
-        return Utils.readInt(false, offset+4, 4, bytes);
+        return Utils.readUInt(false, offset+4, 4, bytes);
     }
 
     public Integer[] getChannal(int index) {
@@ -38,24 +38,19 @@ public class DataSubchunk {
         this.numChannals = numChannals;
         this.offset = offset;
         channals = new ArrayList<>();
-        int numSamples = getSubchunkSize(bytes) / (numChannals * bitSize / 8);
+        int baitSize = bitSize / 8;
+        int numSamples = getSubchunkSize(bytes) / (numChannals * baitSize);
 
         for (int i = 0; i < numChannals; i++)
             channals.add(new Integer[numSamples]);
 
-
         for (int i = 0; i < numSamples; i++) {
             for (int ch = 0; ch < numChannals; ch++) {
-                int probe = 0;
-                for (int bit = 0; bit < (bitSize / 8); bit++) {
-                    //if(i<30)System.out.println("addr:"+ (offset + 8 + (numChannals*bitSize/8) *    i    + (ch*bitSize/8)  - bit) +"\tval:" + unsignedToBytes( bytes[offset + 8 + (numChannals*bitSize/8) *    i    + (ch*bitSize/8)  - bit]) );
-                    probe = probe * 256;
-                    //                    |   start   | size 1 probe in all ch  | current | current channal | current bit |
-                    probe = probe + (bytes[offset + 8 + (numChannals * bitSize / 8) * i + (ch * bitSize / 8) - bit]);
-                }
-                //if(i<30)System.out.println(probe);
-                channals.get(ch)[i] = probe;
+                channals.get(ch)[i] = Utils.readUInt(false, (offset + 8 + (numChannals * baitSize) * i - baitSize ), baitSize, bytes);
+                //System.out.println( i + ": " +Utils.readUInt(false, (offset + 8 + (numChannals * baitSize) * i - baitSize ), baitSize, bytes));
             }
         }
+
+
     }
 }
