@@ -10,10 +10,8 @@ public class AudioAnalyzer {
 
     public static void main(String[] args) throws Exception {
 
-
-
         try {
-            FFTWindow g = new FFTWindow(FILE_NAME_1, 2048, 2048 * 5 , 800, 600);
+            FFTWindow g = new FFTWindow(FILE_NAME_2, 1024, 1024 * 9 , 800, 600);
         } catch (IOException e) {
             e.printStackTrace();
         }

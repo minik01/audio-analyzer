@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class DataSubchunk {
     private int offset;
-    List<Integer[]> channals;
-    int numChannals, bitSize;
+    List<Integer[]> channals; //nie moze byc int, bo musi byc typ obiektowy
+    int numChannals, bitSize; //ile jest bitow na probke
 
     public int getOffset() {
         return offset;
@@ -26,10 +26,11 @@ public class DataSubchunk {
     {
         return channals.size();
     }
+    //liczba bitow wszystkich kanalow
     public int getSubchunkSize(byte[] bytes) {
         return Utils.readUInt(false, offset+4, 4, bytes);
     }
-
+    //zwracamy caly kanal
     public Integer[] getChannal(int index) {
         if (channals.size() > index)
             return channals.get(index);
@@ -37,13 +38,13 @@ public class DataSubchunk {
             return null;
     }
 
-    public DataSubchunk(int offset, byte[] bytes, int numChannals, int bitSize) {
+    public DataSubchunk(int offset, byte[] bytes, int numOfChannals, int bitSize) {
         this.bitSize = bitSize;
-        this.numChannals = numChannals;
+        this.numChannals = numOfChannals;
         this.offset = offset;
         channals = new ArrayList<>();
         int baitSize = bitSize / 8;
-        int numSamples = getSubchunkSize(bytes) / (numChannals * baitSize);
+        int numSamples = getSubchunkSize(bytes) / (numChannals * baitSize);  //liczymy ile jest probek w chanku
 
         for (int i = 0; i < numChannals; i++)
             channals.add(new Integer[numSamples]);
@@ -51,6 +52,7 @@ public class DataSubchunk {
         for (int i = 0; i < numSamples; i++) {
             for (int ch = 0; ch < numChannals; ch++) {
                 channals.get(ch)[i] = Utils.readUInt(false, (offset + 8 + (numChannals * baitSize) * i - baitSize ), baitSize, bytes);
+                //dla danego (ch) kanalu,wczytaujemy wartsc i-tego elemantu
                 //System.out.println( i + ": " +Utils.readUInt(false, (offset + 8 + (numChannals * baitSize) * i - baitSize ), baitSize, bytes));
             }
         }

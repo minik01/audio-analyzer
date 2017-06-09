@@ -8,7 +8,7 @@ import Headers.Utils;
 public class FMT {
 
     private int offset;
-
+    //wczytujemy nazwe FMT
     public String getSubchunkID(byte[] bytes) {
         String ans = "";
         for (int i = 0; i < 4; i++)
@@ -23,7 +23,7 @@ public class FMT {
     public int getAudioFormat(byte[] bytes) {
         return Utils.readUInt(false, offset+8, 2, bytes);
     }
-
+    //ilosc kanalow
     public int getNumChannels(byte[] bytes) {
         return Utils.readUInt(false, offset+10, 2, bytes);
 
@@ -42,11 +42,11 @@ public class FMT {
 
     public int getBlockAlign(byte[] bytes) {
         return Utils.readUInt(false, offset+20, 2, bytes);
-        // wyrownanie
+        // wyrownanie (nie stosuje sie)
     }
 
     public int getBitsPerSample(byte[] bytes) {
-        return Utils.readUInt(false, offset+22, 2, bytes);
+        return Utils.readUInt(false, offset+22, 2, bytes); //Uti.. odczytywanie liczby
         //ile na jedna probke jest bitow
     }
 
@@ -55,7 +55,7 @@ public class FMT {
         for (int i = 24; i < getSubchunkSize(bytes); i++)
             ans += Character.toString((char) bytes[offset + i]);
         return ans;
-    }
+    }//nie stosuje sie
 
 
     public FMT(int offset) {

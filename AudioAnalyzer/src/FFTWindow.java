@@ -23,27 +23,25 @@ public class FFTWindow {
         //odczyt wlasciwosci pliku
         WavReader wavReader = new WavReader(bytes);
         wavReader.showFileProperties();
-
+        //normalizujemy dane
         double dataPart[] = wavReader.getNormalizedData(0, start, end);
         Complex normalizedDataArray[] = new Complex[end - start];
 
-        if (dataPart.length >= 1024) {
-            double timeLine[] = new double[(end - start) / 2];
-            double toPrint[] = new double[(end - start) / 2];
+        if (dataPart.length >= 512) {
+            double timeLine[] = new double[(end - start) / 2]; //x
+            double toPrint[] = new double[(end - start) / 2]; //y
             for (int i = start; i < end; i++) {
                 normalizedDataArray[i - start] = new Complex(dataPart[i - start], 0);
-                //System.out.println(i + ":\t" );
-
             }
             Complex[] fftData = FFT.fft(normalizedDataArray);
-
+            // przypisanie czesci rzecyzwistych kolejnych wartosci FFT do tablicy wypisanie y
             double max = 0;
             //skip first value
             for (int i = 1; i < (end - start) / 2; i++) {
                 toPrint[i] = Math.abs(fftData[i].re());
                 if(max < toPrint[i])
                     max = toPrint[i];
-                timeLine[i] = 0.5 * i * wavReader.getSampleRate() / ((end - start) / 2);
+                timeLine[i] = 0.5 * i * wavReader.getSampleRate() / ((end - start) / 2); //czestotliwosci
             }
 
 
