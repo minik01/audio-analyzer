@@ -4,24 +4,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class AudioAnalyzer {
-    final static String FILE_NAME = "res/suprise.wav";
+    final static String FILE_NAME_1 = "res/suprise.wav";
+    final static String FILE_NAME_2 = "res/11_-_Incident_on_the_Other_Side_of_the_Wall.wav";
     final static String OUTPUT_FILE_NAME = "res/suprise2.wav";
-
-
-    static byte[] readSmallBinaryFile(String aFileName) throws IOException {
-        Path path = Paths.get(aFileName);
-        return Files.readAllBytes(path);
-    }
-
-
-
 
     public static void main(String[] args) throws Exception {
 
-        byte[] bytes = readSmallBinaryFile(FILE_NAME);
 
-        WavReader wavReader = new WavReader(bytes);
-        wavReader.showFileProperties();
+
+        try {
+            FFTWindow g = new FFTWindow(FILE_NAME_1, 2048, 2048 * 5 , 800, 600);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

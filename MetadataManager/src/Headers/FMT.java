@@ -22,7 +22,6 @@ public class FMT {
 
     public int getAudioFormat(byte[] bytes) {
         return Utils.readUInt(false, offset+8, 2, bytes);
-
     }
 
     public int getNumChannels(byte[] bytes) {
@@ -32,23 +31,23 @@ public class FMT {
 
     public long getSampleRate(byte[] bytes) {
         return Utils.readUInt(false, offset+12, 4, bytes);
-
+        //czestotliwosc probkowania
     }
 
     public int getByteRate(byte[] bytes) {
         return Utils.readUInt(false, offset+16, 4, bytes);
-
+        //ile bitow na sekune
     }
 
 
     public int getBlockAlign(byte[] bytes) {
         return Utils.readUInt(false, offset+20, 2, bytes);
-
+        // wyrownanie
     }
 
     public int getBitsPerSample(byte[] bytes) {
         return Utils.readUInt(false, offset+22, 2, bytes);
-
+        //ile na jedna probke jest bitow
     }
 
     public String getExtraParam(byte[] bytes) {

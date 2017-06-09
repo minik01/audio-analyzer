@@ -16,10 +16,9 @@ public class WavReader {
     public WavReader(byte[] raw)  {
         bytes = raw;
         riff = new RIFF(bytes);
-
     }
 
-    public boolean isPowOf2(int n) {
+    public static boolean isPowOf2(int n) {
         if (n == 2)
             return true;
         if (n < 2)
@@ -60,7 +59,6 @@ public class WavReader {
         System.out.println("AudioFormat: \t" + riff.fmt.getAudioFormat(bytes));
         System.out.println("BitsPerSample: \t" + riff.fmt.getBitsPerSample(bytes));
         System.out.println("NumChannels:\t" + getNumChannels());
-        System.out.println("Subchunk1Size: \t" + riff.fmt.getSubchunkSize(bytes));
         System.out.println("sampleRate: \t" + riff.fmt.getSampleRate(bytes));
         System.out.println("ByteRate: \t\t" + riff.fmt.getByteRate(bytes));
         System.out.println("BlockAlign: \t" + riff.fmt.getBlockAlign(bytes));

@@ -22,6 +22,10 @@ public class DataSubchunk {
         return ans;
     }
 
+    public int getNumOfChannals()
+    {
+        return channals.size();
+    }
     public int getSubchunkSize(byte[] bytes) {
         return Utils.readUInt(false, offset+4, 4, bytes);
     }

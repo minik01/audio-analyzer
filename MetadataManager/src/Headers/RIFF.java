@@ -12,6 +12,7 @@ public class RIFF {
     private String chunkID;
     private long chunkSize;
     private String format;
+
     public FMT fmt;
     public List<DataSubchunk> dataSubchunk;
 
@@ -48,6 +49,7 @@ public class RIFF {
 
         for (int i = 12; i < chunkSize; ) {
             Unknown unknown_header = new Unknown(i);
+            //zamiana na male litery
             String subchunkID = unknown_header.getSubchunkID(bytes).toLowerCase();
             System.out.println(i + ": found " + subchunkID);
 
@@ -60,11 +62,9 @@ public class RIFF {
                 dataSubchunk.add(new DataSubchunk(i, bytes, fmt.getNumChannels(bytes), fmt.getBitsPerSample(bytes)));
                 //System.out.println("Found DATA:" + i);
             }
-            try {
-                i = i + unknown_header.getSubchunkSize(bytes) + 8;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            //za kazdym razem zmieniamy "wskaznik"
+            i = i + unknown_header.getSubchunkSize(bytes) + 8;
             // +8, bo 4 bajty na nazwe i 4 na dlugoscc bloku
         }
     }

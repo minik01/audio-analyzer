@@ -17,10 +17,10 @@ public class FFTWindow {
         return Files.readAllBytes(path);
     }
 
-    public FFTWindow(String FILE_NAME, int start, int end) throws IOException {
-
+    public FFTWindow(String FILE_NAME, int start, int end, int wx, int wy ) throws IOException {
+        //odczyt pliku
         byte[] bytes = readSmallBinaryFile(FILE_NAME);
-
+        //odczyt wlasciwosci pliku
         WavReader wavReader = new WavReader(bytes);
         wavReader.showFileProperties();
 
@@ -56,7 +56,7 @@ public class FFTWindow {
             plot.setFixedBounds(0, 0, wavReader.getSampleRate() / 2 + 10);
 
             JFrame frame = new JFrame("Wykres widma" + FILE_NAME);
-            frame.setSize(800, 600);
+            frame.setSize(wx, wy);
             frame.setContentPane(plot);
             frame.setVisible(true);
         } else
@@ -65,11 +65,4 @@ public class FFTWindow {
         //binary.writeSmallBinaryFile(bytes, OUTPUT_FILE_NAME);
     }
 
-    public static void main(String[] args) {
-        try {
-            FFTWindow g = new FFTWindow("res/11_-_Incident_on_the_Other_Side_of_the_Wall.wav", 2048, 2048 * 5);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
